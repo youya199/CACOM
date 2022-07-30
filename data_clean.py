@@ -7,6 +7,7 @@ import csv2np
 import angle
 import vast_to_6_points
 import visualization
+from matplotlib.animation import FuncAnimation
 # this file takes in one csv file, and spit one corresponding angle graph
 
 #1. from csv to int 
@@ -43,11 +44,32 @@ for r in range(n_r):
     B=3
 
 
-c=Y
-list_of_angles=angle.coor2angle(c)
+#ouput 1: draw the angle graph
+list_of_angles=angle.coor2angle(Y)
 visualization.visual(list_of_angles)
 plt.show()
 
+# #output 2: animation of points
 
+# ##range calculate
+# c=np.array(Y) 
+# y_max=np.amax(c[:,:,0])
+# y_min=np.amin(c[:,:,0])
+# x_max=np.amax(c[:,:,1])
+# x_min=np.amin(c[:,:,1])
+# #print(y_max,y_min,x_max,x_min)
+
+# def animate(i):
+#     c=np.array(Y[i])
+#     plt.cla()
+#     plt.xlim([x_min, x_max])
+#     plt.ylim([-y_max,-y_min])
+#     plt.scatter(c[:,1],-c[:,0])
+#     i+=1
+# i=0
+# ani = FuncAnimation(plt.gcf(), animate, interval=100)
+# plt.show()
+
+    
 
 

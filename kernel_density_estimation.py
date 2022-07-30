@@ -23,15 +23,15 @@ def find6(X):#X contains all points, each row is a point, each column is a dimen
     return X[b]
 
 # # b=find6(X)
-Y=pd.read_csv('Extracted_point_fr250-510.csv',header=None,dtype='a')
+#Y=pd.read_csv('Extracted_point_fr250-510.csv',header=None,dtype='a')
 
 # Z=np.array([])
 # # for index,X in Y.iterrows():
 # #     b=X.dropna()
 # #     Z[index,:]=find6(b)
-b=Y.iloc[0].dropna()#.astype('float')
+#b=Y.iloc[0].dropna()#.astype('float')
 
-print(type(b.iloc[3]))
+#print(type(b.iloc[3]))
 X=np.array([
     [171, 628],
     [242, 608],
@@ -51,5 +51,5 @@ X=np.array([
     ])
 #print(X)
 #X=find6(X)
-plt.scatter(X[:,0],X[:,1])
+plt.scatter(X[:,1],X[:,0])
 plt.show()

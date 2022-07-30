@@ -8,6 +8,7 @@ import angle
 import vast_to_6_points
 import visualization
 from matplotlib.animation import FuncAnimation
+# from matplotlib.animation import FFMpegWriter
 # this file takes in one csv file, and spit one corresponding angle graph
 
 #1. from csv to int 
@@ -65,9 +66,9 @@ plt.show()
 #     plt.xlim([x_min, x_max])
 #     plt.ylim([-y_max,-y_min])
 #     plt.scatter(c[:,1],-c[:,0])
-#     i+=1
-# i=0
-# ani = FuncAnimation(plt.gcf(), animate, interval=100)
+#     #i+=1
+
+# ani = FuncAnimation(plt.gcf(), animate, interval=50)
 # plt.show()
 
     

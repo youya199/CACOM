@@ -3,20 +3,42 @@ import math
 
 # 1. 找到4,3,6三个点
 # 按顺序存进point_sort列表
+# def find_points(point_list):
+#     point_sort = []
+
+#     point_list = sorted(point_list)
+#     p5 = point_list[4]
+#     p6 = point_list[5]
+#     point_sort.append(point_list[3])
+#     point_sort.append(point_list[0])
+#     if p6[1] > p5[1]:
+#         point_sort.append(point_list[5])
+#     else:
+#         point_sort.append(point_list[4])
+#     return point_sort
+
 def find_points(point_list):
     point_sort = []
 
     point_list = sorted(point_list)
+    # 4 5 6很容易通过y大小来确定
     p5 = point_list[4]
     p6 = point_list[5]
-    point_sort.append(point_list[3])
-    point_sort.append(point_list[0])
-    if p6[1] > p5[1]:
-        point_sort.append(point_list[5])
-    else:
-        point_sort.append(point_list[4])
-    return point_sort
+    p4 = point_list[3]
+    point_sort.append(p4)
+    
+    # p1, p2, p3很容易混淆
+    # 此时通过 x值判断
+    p3 = point_list[0]
+    p2 = point_list[1]
+    p1 = point_list[2]
 
+    # p3 = max(p1[1], p2[1], p3[1])
+    p3 = max([p1, p2, p3], key=lambda x: x[1])
+    
+    point_sort.append(p3)
+    point_sort.append(p6)
+    return point_sort
 
 # 2.  计算三边长
 def euclidean_distance(p1, p2):

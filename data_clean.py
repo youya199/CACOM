@@ -68,7 +68,7 @@ plt.show()
 #     plt.scatter(c[:,1],-c[:,0])
 #     #i+=1
 
-# ani = FuncAnimation(plt.gcf(), animate, interval=50)
+# ani = FuncAnimation(plt.gcf(), animate, interval=10)
 # plt.show()
 
     

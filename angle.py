@@ -1,5 +1,5 @@
 import math
-
+import numpy as np
 
 # 1. 找到4,3,6三个点
 # 按顺序存进point_sort列表
@@ -17,27 +17,56 @@ import math
 #         point_sort.append(point_list[4])
 #     return point_sort
 
+# def find_points(point_list):
+#     point_sort = []
+
+#     point_list = sorted(point_list)
+#     # 4 5 6很容易通过y大小来确定
+#     p5 = point_list[4]
+#     p6 = point_list[5]
+#     p4 = point_list[3]
+#     point_sort.append(p4)
+    
+#     # p1, p2, p3很容易混淆
+#     # 此时通过 x值判断
+#     p3 = point_list[0]
+#     p2 = point_list[1]
+#     p1 = point_list[2]
+
+#     # p3 = max(p1[1], p2[1], p3[1])
+#     p3 = max([p1, p2, p3], key=lambda x: x[1])
+    
+#     point_sort.append(p3)
+#     point_sort.append(p6)
+#     return point_sort
+
 def find_points(point_list):
+    # for points in point_list
+
     point_sort = []
 
     point_list = sorted(point_list)
-    # 4 5 6很容易通过y大小来确定
-    p5 = point_list[4]
-    p6 = point_list[5]
-    p4 = point_list[3]
-    point_sort.append(p4)
-    
-    # p1, p2, p3很容易混淆
-    # 此时通过 x值判断
-    p3 = point_list[0]
-    p2 = point_list[1]
-    p1 = point_list[2]
 
-    # p3 = max(p1[1], p2[1], p3[1])
-    p3 = max([p1, p2, p3], key=lambda x: x[1])
-    
+    p6 = min(point_list, key=lambda x: x[1])
+    # p6 = max(point_list)
+    # p6 = point_list[5]
+    p1 = point_list[0]
+    if p6 == p1:
+        p6 = max(point_list)
+
+    p3 = max(point_list, key=lambda x: x[1])
+
+    point_list.remove(p6)
+    point_list.remove(p3)
+    point_list.remove(p1)
+
+    point_list = sorted(point_list)
+
+    p4 = point_list[1]
+    point_sort.append(p4)
     point_sort.append(p3)
     point_sort.append(p6)
+
     return point_sort
 
 # 2.  计算三边长
@@ -110,6 +139,15 @@ def coor2angle(all_points):
             continue
 
         # 添加第k帧的angle到list中
-        angles_change.append(angle(edge_34, edge_36, edge_46))
-
-    return angles_change
+        # angles_change.append(angle(edge_34, edge_36, edge_46))
+        ag=angle(edge_34, edge_36, edge_46)
+        angles_change.append(ag)
+    final_angles=[]
+    angle_mean=np.mean(angles_change)
+    for i in range(len(angles_change)):
+        if (angles_change[i] > (angle_mean-5)) and (angles_change[i] < (angle_mean+5)):
+            angles_change[i]=angles_change[i]-14.5
+            final_angles.append(angles_change[i])
+        else:
+            continue
+    return final_angles
